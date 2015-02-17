@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html lang="en" ng-app="limoApp" manifest="limo.appcache">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" >
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>LIMO</title>
+        <base href="http://localhost/PHONEGAP/">
+        
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114x114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-72x72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png">
+        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+        <link rel="shortcut icon" type="image/png" href="favicon.png" />
+        
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/simple-sidebar.css">
+        <link rel="stylesheet" href="css/limo.css">
+    </head>
+    <body ng-controller="MainCtrl">
+        <div id="wrapper" >
+
+            <!-- Sidebar -->
+            <div id="sidebar-wrapper">
+                <ul class="sidebar-nav">
+                    <li>
+                        <a href="mobilimo">Mobilimo</a>
+                    </li>
+                    <li>
+                        <a href="limodriver">LimoDriver</a>
+                    </li>
+                    <li>
+                        <a href="pagequinexistepas">404</a>
+                    </li>
+                    <li>
+                        <a href="login">Déconnexion</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /#sidebar-wrapper -->    
+            
+            <nav class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button href="#menu-toggle" class="navbar-toggle pull-left" id="menu-toggle">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="./">LIMO</a>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Page Content -->
+            <div id="page-content-wrapper">
+                <div class="container-fluid" ng-view></div>
+            </div>
+            <!-- /#page-content-wrapper -->
+
+        </div>
+        <!-- /#wrapper -->
+        
+        <script src="js/angular/angular.min.js"></script>
+        <script src="js/angular/angular-route.min.js"></script>
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/simple-sidebar.js"></script>
+        <script src="js/limo.js"></script>
+    </body>
+</html>

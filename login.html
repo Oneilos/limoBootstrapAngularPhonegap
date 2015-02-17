@@ -1,0 +1,20 @@
+<form class="form-signin" ng-controller="AuthCtrl">
+    <h2 class="form-signin-heading">Identification</h2>
+    <label for="inputServeur" class="sr-only">Serveur</label>
+    <input ng-model="inputServeur" type="text" id="inputServeur" class="form-control" placeholder="Serveur" required autofocus>
+    <label for="inputEmail" class="sr-only">Email address</label>
+    <input ng-model="inputEmail" type="email" id="inputEmail" class="form-control" placeholder="Email address" required>
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input ng-model="inputPassword" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+    <div class="checkbox">
+        <label>
+            <input ng-model="inputShowPassword" id="inputShowPassword" type="checkbox" value="1"> Afficher le mot de passe
+        </label>
+    </div>
+    <div class="checkbox">
+        <label>
+            <input ng-model="inputRemember" id="inputRemember" type="checkbox" value="1"> Se souvenir de moi
+        </label>
+    </div> 
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Connexion</button>
+</form>
