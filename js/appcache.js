@@ -1,4 +1,4 @@
-window.addEventListener('deviceready', function(e) {
+window.addEventListener('load', function(e) {
 
     window.applicationCache.addEventListener('updateready', function(e) {
         if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {

@@ -3,11 +3,19 @@ var limoApp = angular.module('limoApp', ['ngRoute']);
 limoApp.controller('AuthCtrl', function ($scope,$http,$interval,$filter) {
 });
 
-limoApp.config(function($routeProvider, $locationProvider) {
-    $locationProvider.html5Mode({
-        enabled: true,
-        requireBase: false
-    });
+limoApp.config(function($routeProvider, $locationProvider, $location) {
+    // compatiblité phongap + web
+    if(main.$location.absUrl()!='file:///') {
+        $locationProvider.html5Mode({
+            enabled: true,
+            requireBase: false
+        });
+    } else {
+        $("a").each(function() {
+            var HREF_LINK = '#' + $(this).attr('href');
+            $(this).attr("href", HREF_LINK);
+        });
+    }
     $routeProvider
         .when('/', {
             templateUrl : 'home.html',
