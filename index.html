@@ -62,13 +62,19 @@
                 <pre>$route.current.templateUrl = {{main.$route.current.templateUrl}}</pre>
                 <pre>$route.current.params = {{main.$route.current.params}}</pre>
                 <pre>$routeParams = {{main.$routeParams}}</pre>
+                <pre id="error"></pre>
                 <div class="container-fluid" ng-view></div>
             </div>
             <!-- /#page-content-wrapper -->
 
         </div>
         <!-- /#wrapper -->
-        
+        <script type="text/javascript">
+            window.onerror = function(msg, url, linenumber) {
+                alert('Error message: '+msg+'\nURL: '+url+'\nLine Number: '+linenumber);
+                return true;
+            }
+        </script>
         <script src="js/angular/angular.min.js"></script>
         <script src="js/angular/angular-route.min.js"></script>
         <script src="js/jquery.min.js"></script>
