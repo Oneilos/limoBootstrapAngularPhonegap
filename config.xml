@@ -22,6 +22,8 @@
     <preference name="fullscreen" value="true" />
     <icon src="apple-touch-icon-114x114-precomposed.png" />
     
+    <gap:platform name="android" />
+    
     <gap:url-scheme name="com.acme.myscheme" role="None">
       <scheme>pgbr</scheme>
       <scheme>pgbw</scheme>
