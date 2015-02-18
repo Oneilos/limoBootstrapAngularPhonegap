@@ -1,8 +1,8 @@
 CACHE MANIFEST
-# v1.0.0.3
+# v1.0.0.17
 
 FALLBACK:
-/ index.html
+/ /
 
 NETWORK:
 *
