@@ -1,5 +1,5 @@
 var limoApp = angular.module('limoApp', ['ngRoute']);
-alert(location.href);
+alert(location.href.substring(0,8));
 limoApp.controller('AuthCtrl', function ($scope,$http,$interval,$filter) {
 });
 
