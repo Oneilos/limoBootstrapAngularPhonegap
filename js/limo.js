@@ -5,7 +5,7 @@ limoApp.controller('AuthCtrl', function ($scope,$http,$interval,$filter) {
 
 limoApp.config(function($routeProvider, $locationProvider) {
     // compatiblité phongap + web
-    if(location.href!='file:///') {
+    if(location.href.substring(0,8)!='file:///') {
         $locationProvider.html5Mode({
             enabled: true,
             requireBase: false
