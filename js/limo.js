@@ -3,9 +3,9 @@ var limoApp = angular.module('limoApp', ['ngRoute']);
 limoApp.controller('AuthCtrl', function ($scope,$http,$interval,$filter) {
 });
 
-limoApp.config(function($routeProvider, $locationProvider, $location) {
+limoApp.config(function($routeProvider, $locationProvider) {
     // compatiblité phongap + web
-    if(main.$location.absUrl()!='file:///') {
+    if(location.href!='file:///') {
         $locationProvider.html5Mode({
             enabled: true,
             requireBase: false
