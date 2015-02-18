@@ -4,6 +4,7 @@ limoApp.controller('AuthCtrl', function ($scope,$http,$interval,$filter) {
 });
 
 limoApp.config(function($routeProvider, $locationProvider) {
+    $locationProvider.html5Mode(true);
     $routeProvider
         .when('/', {
             templateUrl : 'home.html',
@@ -28,7 +29,6 @@ limoApp.config(function($routeProvider, $locationProvider) {
         .otherwise({
             redirectTo: '/404'
         });
-    $locationProvider.html5Mode(true);
 });
 
 limoApp.controller('MainCtrl', function ($scope,$http,$interval,$filter) {
