@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+    <widget xmlns   = "http://www.w3.org/ns/widgets"
+        xmlns:gap   = "http://phonegap.com/ns/1.0"
+        id          = "com.phonegap.limo"
+        versionCode = "10" 
+        version     = "1.0.0" >
+
+    <!-- versionCode is optional and Android only -->
+
+    <name>LIMO</name>
+
+    <description>
+        Application connecté aux serveurs LIMO. 
+    </description>
+
+    <author href="https://www.limo-vtc.fr" email="support@limo-vtc.fr">
+        Support
+    </author>
+    
+    <preference name="phonegap-version" value="3.6.3" />
+    <preference name="orientation" value="portrait" />
+    <preference name="fullscreen" value="true" />
+    <icon src="apple-touch-icon-114x114-precomposed.png" />
+    
+    <gap:url-scheme name="com.acme.myscheme" role="None">
+      <scheme>pgbr</scheme>
+      <scheme>pgbw</scheme>
+    </gap:url-scheme>
+    
+    <access origin="*" />
+</widget>
