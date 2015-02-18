@@ -17,7 +17,7 @@
         <link rel="stylesheet" href="css/simple-sidebar.css">
         <link rel="stylesheet" href="css/limo.css">
     </head>
-    <body ng-controller="MainCtrl">
+    <body ng-controller="MainCtrl as main">
         <div id="wrapper" >
 
             <!-- Sidebar -->
@@ -57,6 +57,11 @@
 
             <!-- Page Content -->
             <div id="page-content-wrapper">
+                <pre>$location.absUrl() = {{main.$location.absUrl()}}</pre>
+                <pre>$location.path() = {{main.$location.path()}}</pre>
+                <pre>$route.current.templateUrl = {{main.$route.current.templateUrl}}</pre>
+                <pre>$route.current.params = {{main.$route.current.params}}</pre>
+                <pre>$routeParams = {{main.$routeParams}}</pre>
                 <div class="container-fluid" ng-view></div>
             </div>
             <!-- /#page-content-wrapper -->

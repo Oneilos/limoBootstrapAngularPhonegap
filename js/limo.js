@@ -34,7 +34,10 @@ limoApp.config(function($routeProvider, $locationProvider) {
         });
 });
 
-limoApp.controller('MainCtrl', function ($scope,$http,$interval,$filter) {
+limoApp.controller('MainCtrl', function ($route, $routeParams, $location) {   
+    this.$route = $route;
+    this.$location = $location;
+    this.$routeParams = $routeParams;
 });
 limoApp.controller('MobilimoCtrl', function ($scope,$http,$interval,$filter) {
 });
