@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
     <widget xmlns   = "http://www.w3.org/ns/widgets"
         xmlns:gap   = "http://phonegap.com/ns/1.0"
-        id          = "com.phonegap.limo"
+        id          = "1317506"
         versionCode = "10" 
         version     = "1.0.0" >
 
@@ -10,7 +10,7 @@
     <name>LIMO</name>
 
     <description>
-        Application connecté aux serveurs LIMO. 
+        Application connectee aux serveurs LIMO. 
     </description>
 
     <author href="https://www.limo-vtc.fr" email="support@limo-vtc.fr">
