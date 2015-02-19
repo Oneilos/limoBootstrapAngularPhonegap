@@ -1,4 +1,4 @@
-<form class="form-signin" ng-controller="AuthCtrl">
+<form class="form-signin" ng-controller="LoginCtrl">
     <h2 class="form-signin-heading">Identification</h2>
     <label for="inputServeur" class="sr-only">Serveur</label>
     <input ng-model="inputServeur" type="text" id="inputServeur" class="form-control" placeholder="Serveur" required autofocus>
@@ -16,5 +16,5 @@
             <input ng-model="inputRemember" id="inputRemember" type="checkbox" value="1"> Se souvenir de moi
         </label>
     </div> 
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Connexion</button>
+    <button class="btn btn-lg btn-primary btn-block" ng-click="login()" type="button">Connexion</button>
 </form>

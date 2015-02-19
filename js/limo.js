@@ -1,8 +1,5 @@
 var limoApp = angular.module('limoApp', ['ngRoute']);
 
-limoApp.controller('AuthCtrl', function ($scope,$http,$interval,$filter) {
-});
-
 limoApp.config(function($routeProvider, $locationProvider) {
     // compatiblité phongap + web
     if(location.href.substring(0,8)!='file:///') {
@@ -42,7 +39,16 @@ limoApp.config(function($routeProvider, $locationProvider) {
         });
 });
 
-limoApp.controller('MainCtrl', function ($route, $routeParams, $location) {   
+limoApp.service('AuthService', function () {
+    var service = {};
+    service.login = function (serveur, login, mdp) {
+        alert('Connexion: ' + serveur + login + mdp);
+        return true ? true : false;
+    }
+    return service;
+});
+
+limoApp.controller('MainCtrl', function ($route,$routeParams,$location) {   
     this.$route = $route;
     this.$location = $location;
     this.$routeParams = $routeParams;
@@ -51,7 +57,12 @@ limoApp.controller('MobilimoCtrl', function ($scope,$http,$interval,$filter) {
 });
 limoApp.controller('LimodriverCtrl', function ($scope,$http,$interval,$filter) {
 });
-limoApp.controller('LoginCtrl', function ($scope,$http,$interval,$filter) {
+limoApp.controller('LoginCtrl', function ($scope,$http,$interval,$filter,AuthService,$location) {
+    $scope.login = function(){
+        if (AuthService.login($scope.inputServeur, $scope.inputEmail, $scope.inputPassword)) {
+            $location.path('/');
+        }
+    }
 });
 limoApp.controller('404Ctrl', function ($scope,$http,$interval,$filter) {
 });
