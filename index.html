@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" >
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="mobile-web-app-capable" content="yes">
         <title>LIMO</title>
         
         <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114x114-precomposed.png">
@@ -15,6 +16,17 @@
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/simple-sidebar.css">
         <link rel="stylesheet" href="css/limo.css">
+        
+        <script defer="defer" src="js/error.js"></script>
+        <script defer="defer" src="cordova.js"></script>
+        <script defer="defer" src="js/angular/angular.min.js"></script>
+        <script defer="defer" src="js/angular/angular-route.min.js"></script>
+        <script defer="defer" src="js/jquery.min.js"></script>
+        <script defer="defer" src="js/bootstrap.min.js"></script>
+        <script defer="defer" src="js/simple-sidebar.js"></script>
+        <script defer="defer" src="js/appcache.js"></script>
+        <script defer="defer" src="js/limo.js"></script>
+        <!--<script defer="defer" src="js/pushNotification.js"></script>-->
     </head>
     <body ng-controller="MainCtrl as main">
         <div id="wrapper" >
@@ -32,7 +44,13 @@
                         <a href="limodriver">LimoDriver</a>
                     </li>
                     <li>
+                        <a href="factory/C_Mod_Concept">Factory</a>
+                    </li>
+                    <li>
                         <a href="pagequinexistepas">404</a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="window.applicationCache.update();return false;">UPDATE</a>
                     </li>
                     <li>
                         <a href="login">Déconnexion</a>
@@ -42,45 +60,36 @@
             <!-- /#sidebar-wrapper -->    
             
             <nav class="navbar navbar-inverse navbar-fixed-top">
-                <div class="container">
-                    <div class="navbar-header">
+                <div class="container-fluid">
+                    <div class="navbar-header centered">
                         <button href="#menu-toggle" class="navbar-toggle pull-left" id="menu-toggle">
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
                         <a class="navbar-brand" href="/">LIMO</a>
+                        <span ng-controller="StatutCtrl"><span class="statut" ng-class="{online: online}"></span></span>
+                        <button class="btn btn-info btn-lg pull-right">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
                     </div>
                 </div>
             </nav>
 
             <!-- Page Content -->
             <div id="page-content-wrapper">
+                <!--
                 <pre>$location.absUrl() = {{main.$location.absUrl()}}</pre>
                 <pre>$location.path() = {{main.$location.path()}}</pre>
                 <pre>$route.current.templateUrl = {{main.$route.current.templateUrl}}</pre>
                 <pre>$route.current.params = {{main.$route.current.params}}</pre>
                 <pre>$routeParams = {{main.$routeParams}}</pre>
-                <pre id="error"></pre>
+                -->
                 <div class="container-fluid" ng-view></div>
             </div>
             <!-- /#page-content-wrapper -->
 
         </div>
         <!-- /#wrapper --> 
-        <script type="text/javascript">
-            window.onerror = function(msg, url, linenumber) {
-                document.getElementById('error').innerHTML=("Error message: "+msg+"\nURL: "+url+"\nLine Number: "+linenumber);
-                return true;
-            }
-        </script>
-        <!--<script src="cordova.js"></script>-->
-        <script src="js/angular/angular.min.js"></script>
-        <script src="js/angular/angular-route.min.js"></script>
-        <script src="js/jquery.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/simple-sidebar.js"></script>
-        <script src="js/appcache.js"></script>
-        <script src="js/limo.js"></script>
     </body>
 </html>

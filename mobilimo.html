@@ -1,6 +1,47 @@
 <div class="row">
     <div class="col-lg-12">
-        <h1>MOBILIMO</h1>
-        <p>This is MOBILIMO page.</p>
+
+        <section id="demandeListe" class="boite" ng-controller="DemandesCtrl">
+            <h1 ng-show="liste.length">Demandes en attente ({{liste.length}})</h1>
+            <h1 ng-hide="liste.length">Aucune demande en attente</h1>
+            <div ng-repeat="elem in liste | limitTo:8 track by elem.DDE_ID">
+                <div class="demande clearAfter" ng-click="setActive($index)">
+                    <div class="cell tps"><span class="heure">{{ elem.DDE_DATE_CREATION | replace : ' ' : 'T' | age }}</span></div>
+                    <div class="cell date">
+                        {{ elem.DDE_DATE_DEPART | date:"dd/MM/yyyy" }}
+                        {{ elem.DDE_HEURE_DEPART | replace:':':'h' | limitTo:5 }}
+                    </div>
+                    <div class="cell client">
+                        <span class="color">{{ elem.DDE_SOCIETE }}</span><br>
+                        {{ elem.DDE_PRENOM }} <span class="maj">{{ elem.DDE_NOM }}</span>
+                    </div>
+                    <a class="cell icone">-</a>
+                    <div id="demandeDepliee1" class="demandeDepliee" ng-show="isActive($index)">
+                        <dl class="dl clearAfter">
+                            <dt class="dt">Prise en charge</dt>
+                            <dd class="dd lieu">{{ elem.DDE_LIEU_DEPART }}</dd>
+                            <dt class="dt">Destination</dt>
+                            <dd class="dd lieu">{{ elem.DDE_LIEU_RETOUR }}</dd>
+                            <dt class="dt">Email</dt>
+                            <dd class="dd">{{ elem.DDE_EMAIL }}</dd>
+                            <dt class="dt">Tél :</dt>
+                            <dd class="dd">{{ elem.DDE_TELEPHONE }}</dd>
+                        </dl>
+                        <p class="description">{{ elem.DDE_MESSAGE }}</p>
+                        <div ng-if="elem.DDE_DATE_RETOUR">
+                        <div class="retour">Retour  : {{ elem.DDE_DATE_RETOUR | date:"dd/MM/yyyy" }} - {{ elem.DDE_HEURE_RETOUR | replace:':':'h' | limitTo:5 }}</div>
+                        </div>
+                        <div class="infoAction">
+                            <div class="param pax"><span class="icone">×</span>{{ elem.DDE_NB_PERSONNES }}</div>
+                            <div class="param bagage"><span class="icone">×</span>{{ elem.DDE_NB_BAGAGES }}</div>
+                            <a class="action accepter" href="/bop3/C_Com_Commande/traite-demande?SDD_ID=2&DDE_ID={{ elem.DDE_ID }}" title="Accepter la mission"><span class="icone">ô</span></a>
+                            <a class="action refuser" href="/bop3/C_Com_Commande/traite-demande?SDD_ID=3&DDE_ID={{ elem.DDE_ID }}" title="Refuser la mission"><span class="icone">o</span></a>
+                            <a class="action transferer" href="/bop3/C_Com_Commande/traite-demande?SDD_ID=4&DDE_ID={{ elem.DDE_ID }}" title="Transférer la mission"><span class="icone">|</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
     </div>
 </div>

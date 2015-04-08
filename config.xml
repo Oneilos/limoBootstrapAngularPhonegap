@@ -29,5 +29,7 @@
       <scheme>pgbw</scheme>
     </gap:url-scheme>
     
+    <gap:plugin name="com.phonegap.plugins.pushplugin" version="2.1.1" />
+    
     <access origin="*" />
 </widget>

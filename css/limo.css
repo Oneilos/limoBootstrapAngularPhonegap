@@ -1,1 +1,47 @@
+@font-face {
+    font-family: 'Capsuula';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/Capsuula-webfont.woff') format('woff');
+}
+@font-face {
+    font-family: 'bop_icone';
+    src:   url('../fonts/bop_icone-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body { padding-top: 50px; }
+
+h1 {font:bold 1.6em 'Capsuula'; text-align:center;}
+.icone {    font-family:bop_icone; }
+
+/* -------- DEMANDE EN ATTENTE -------- */
+#demandeListe h1 {background:#0a8cde; font-size:2.2em; line-height:55px; color:#fff;}
+.demande{padding:5px; border-bottom:1px solid #e0e0e0;}
+.demande .cell {display:table-cell; vertical-align:middle; padding-left:3%;}
+.demande .cell.tps {padding-left:0;}
+.demande .tps {width:14%; background:#2aabfc; color:#fff; position:relative; padding-left:0; padding-bottom:14%; border-radius:50%;}
+.demande .tps .heure{position:absolute; display:block; width:100%; text-align:center; line-height:45px;}
+.demande .date {width:20%;}
+.demande .client {width:52%;}
+.demande .client .color {color:#21a0f0;}
+.demande > .icone {width:10%; color:#0078c4; font-size:1.4em; text-decoration:none; cursor:pointer;}
+.demande .demandeDepliee {width:100%; padding:5px 5px 0; background:#e7edf5; margin-top:5px; border-radius:5px;}
+.demande .demandeDepliee .dt{width:28%; float:left; clear:both; color:#7d7d7d; text-align:right;}
+.demande .demandeDepliee .dd{width:70%; float:right; margin-bottom:4px;}
+.demande .demandeDepliee .dd.lieu{margin-bottom:8px;}
+.demande .demandeDepliee .description{margin:5px 0 8px;}
+.demande .demandeDepliee .retour{background:none; color:#0078c4; text-align:center; margin-bottom:8px;}
+.demande .demandeDepliee .infoAction{text-align:center;}
+.demande .demandeDepliee .param,
+.demande .demandeDepliee .action{display:inline-block; color:#fff; margin-right:1px;}
+.demande .demandeDepliee .param .icone,
+.demande .demandeDepliee .action .icone{font-size:1em; line-height:25px;}
+.demande .demandeDepliee .param {width:13%; background:#7f8cb2;}
+.demande .demandeDepliee .param .bagage{margin-right:4px;}
+.demande .demandeDepliee .action{width:10%; background:#0078c4; text-decoration:none;}
+.demande .demandeDepliee .action:hover{background:#fff; color:#0078c4;}
+
+.statut {border-radius:10px;padding:10px;background-color:red;display:inline-block;margin:13px;}
+.statut.online {background-color:green;}
