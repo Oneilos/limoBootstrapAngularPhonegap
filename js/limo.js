@@ -22,6 +22,10 @@ limoApp.config(function($routeProvider, $locationProvider) {
         .when('/mobilimo', {
             templateUrl : 'mobilimo.html',
             controller  : 'MobilimoCtrl'
+        })       
+        .when('/geoloc', {
+            templateUrl : 'geoloc.html',
+            controller  : 'GeolocCtrl'
         })        
         .when('/limodriver', {
             templateUrl : 'limodriver.html',
@@ -81,14 +85,22 @@ limoApp.filter('age', function() {
     }
 });
 
-limoApp.service('AuthService', function () {
+limoApp.service('AuthService', function ($http) {
     var service = {};
-    service.login = function (serveur, login, mdp) {
-        service.serveur = serveur;
-        service.login = login;
-        service.mdp = mdp;
-        alert('Connexion: ' + serveur + login + mdp);
-        return true ? true : false;
+    service.logged = function () {      
+        if (navigator.onLine) {
+            $http.jsonp('https://' + service.SRV + '.limovtc.fr/bop3/login/?login=' + service.LNG + '&mot_passe=' + service.MDP).
+            success(function(data, status, headers, config) {
+                console.log(headers);
+            });
+        }
+        return false;
+    }
+    service.login = function (SRV, LNG, MDP) {
+        service.SRV = SRV;
+        service.LNG = LNG;
+        service.MDP = MDP;
+        return service.logged();
     }
     return service;
 });
@@ -102,7 +114,7 @@ limoApp.controller('MobilimoCtrl', function ($scope,$http,$interval,$filter) {
 });
 limoApp.controller('LimodriverCtrl', function ($scope,$http,$interval,$filter) {
 });
-limoApp.controller('DemandesCtrl', function ($scope,$http,$interval,$filter) {
+limoApp.controller('DemandesCtrl', function ($scope,$http,$interval,$filter,AuthService) {
     var active = 0;
     $scope.setActive = function(index) {
         active = index;
@@ -111,8 +123,8 @@ limoApp.controller('DemandesCtrl', function ($scope,$http,$interval,$filter) {
         return active===index;
     }
     update = function(){
-        if (navigator.onLine) {
-            $http.jsonp('https://dev.limovtc.fr/bop3/C_Com_DemandeDevis/jsonp/?DDE_SDD_ID=1&callback=JSON_CALLBACK').
+        if (navigator.onLine && AuthService.logged()) {
+            $http.jsonp('https://' + AuthService.SRV + '.limovtc.fr/bop3/C_Com_DemandeDevis/jsonp/?DDE_SDD_ID=1&callback=JSON_CALLBACK').
             success(function(data, status, headers, config) {
                 if (typeof $scope.liste!='undefined' && $scope.liste.length<data.length) {
                     sound.play();
@@ -125,13 +137,25 @@ limoApp.controller('DemandesCtrl', function ($scope,$http,$interval,$filter) {
     update();
 });
 limoApp.controller('LoginCtrl', function ($scope,$http,$interval,$filter,AuthService,$location) {
+    $scope.inputServeur = AuthService.SRV;
+    $scope.inputLogin = AuthService.LNG;
+    $scope.inputPassword = AuthService.MDP;
     $scope.login = function(){
-        if (AuthService.login($scope.inputServeur, $scope.inputEmail, $scope.inputPassword)) {
+        if (AuthService.login($scope.inputServeur, $scope.inputLogin, $scope.inputPassword)) {
             $location.path('/');
         }
     }
 });
 limoApp.controller('404Ctrl', function ($scope,$http,$interval,$filter) {
+});
+limoApp.controller('GeolocCtrl', function ($scope,$http,$interval,$filter) {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position){
+            $scope.$apply(function(){
+                $scope.position = position;
+            });
+        });
+    }
 });
 limoApp.controller('StatutCtrl', function($scope,$window) {
     $scope.online = navigator.onLine;
