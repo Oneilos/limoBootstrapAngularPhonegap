@@ -149,20 +149,43 @@ limoApp.controller('LoginCtrl', function ($scope,$http,$interval,$filter,AuthSer
 limoApp.controller('404Ctrl', function ($scope,$http,$interval,$filter) {
 });
 limoApp.controller('GeolocCtrl', function ($scope,$http,$interval,$filter) {
-    $scope.KEY = 0;
+    $scope.KEY = Math.random().toString(36).substring(7);   
+    $scope.users = new Array();    
+    $scope.map = new google.maps.Map(document.getElementById('ggmap'),{
+        zoom: 18
+    });
+    $scope.update = function() {        
+        $http.jsonp('https://www.limo-vtc.fr/apptools/geoloc?callback=JSON_CALLBACK' 
+            + '&KEY=' + $scope.KEY
+            + '&latitude=' + $scope.position.coords.latitude 
+            + '&longitude=' + $scope.position.coords.longitude).
+        success(function(data, status, headers, config) {
+            for (user in data.POS) {
+                if (typeof $scope.users[user]=='undefined') {
+                    $scope.users[user] = new google.maps.InfoWindow({
+                        map: $scope.map,
+                        content: user
+                    });
+                }
+                $scope.users[user].setPosition(new google.maps.LatLng(
+                    data.POS[user].latitude,
+                    data.POS[user].longitude
+                ));
+            }
+        });
+    }
     if (navigator.geolocation) {
         navigator.geolocation.watchPosition(function(position){
             $scope.$apply(function(){
                 $scope.position = position;
-                $http.jsonp('https://www.limo-vtc.fr/apptools/geoloc?callback=JSON_CALLBACK' 
-                    + '&KEY=' + $scope.KEY
-                    + '&latitude=' + $scope.position.coords.latitude 
-                    + '&longitude=' + $scope.position.coords.longitude).
-                success(function(data, status, headers, config) {
-                    $scope.KEY = data.KEY;
-                });
+                $scope.map.setCenter(new google.maps.LatLng(
+                    $scope.position.coords.latitude,
+                    $scope.position.coords.longitude
+                ));
+                $scope.update();
             });
         });
+        //var timer = setInterval($scope.update, 3000);
     }
 });
 limoApp.controller('StatutCtrl', function($scope,$window) {

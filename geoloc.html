@@ -6,7 +6,7 @@
                 <tbody>
                     <tr>
                         <th>KEY</th>
-                        <td>{{KEY}}</td>
+                        <td><input type="text" ng-model="KEY" value="{{KEY}}" /></td>
                     </tr>
                     <tr>
                         <th>Latitude</th>
@@ -16,8 +16,13 @@
                         <th>Longitude</th>
                         <td>{{position.coords.longitude}}</td>
                     </tr>
+                    <tr>
+                        <th>Vitesse</th>
+                        <td>{{position.coords.accuracy}}</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
+        <div id="ggmap"></div>
     </div>
 </div>
