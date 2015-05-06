@@ -133,7 +133,7 @@ limoApp.controller('DemandesCtrl', function ($scope,$http,$interval,$filter,Auth
             });
         }
     }
-    var timer = setInterval(update, 3000);
+    var timer = $interval(update, 3000);
     update();
 });
 limoApp.controller('LoginCtrl', function ($scope,$http,$interval,$filter,AuthService,$location) {
@@ -154,7 +154,7 @@ limoApp.controller('GeolocCtrl', function ($scope,$http,$interval,$filter) {
     $scope.map = new google.maps.Map(document.getElementById('ggmap'),{
         zoom: 18
     });
-    $scope.update = function() {        
+    $scope.update = function() {
         $http.jsonp('https://www.limo-vtc.fr/apptools/geoloc?callback=JSON_CALLBACK' 
             + '&KEY=' + $scope.KEY
             + '&latitude=' + $scope.position.coords.latitude 
@@ -162,7 +162,7 @@ limoApp.controller('GeolocCtrl', function ($scope,$http,$interval,$filter) {
         success(function(data, status, headers, config) {
             for (user in data.POS) {
                 if (typeof $scope.users[user]=='undefined') {
-                    $scope.users[user] = new google.maps.InfoWindow({
+                    $scope.users[user] = new google.maps.Marker({
                         map: $scope.map,
                         content: user
                     });
@@ -185,7 +185,7 @@ limoApp.controller('GeolocCtrl', function ($scope,$http,$interval,$filter) {
                 $scope.update();
             });
         });
-        //var timer = setInterval($scope.update, 3000);
+        var timer = $interval($scope.update, 3000);
     }
 });
 limoApp.controller('StatutCtrl', function($scope,$window) {
